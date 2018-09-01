@@ -1,6 +1,6 @@
 {
   "name": "catering",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Cater to callback and promise crowds, internally use callbacks.",
   "license": "MIT",
   "author": "Vincent Weevers",
