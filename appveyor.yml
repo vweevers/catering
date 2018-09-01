@@ -1,6 +1,5 @@
 version: "{build}"
 build: off
-skip_tags: true
 
 environment:
   matrix:
