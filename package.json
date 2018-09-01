@@ -1,0 +1,29 @@
+{
+  "name": "catering",
+  "version": "0.0.0",
+  "description": "Cater to callback and promise crowds, internally use callbacks.",
+  "license": "MIT",
+  "author": "Vincent Weevers",
+  "scripts": {
+    "test": "standard && node test.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "~12.0.1",
+    "tape": "~4.9.1"
+  },
+  "keywords": [
+    "callback",
+    "promise",
+    "promisify"
+  ],
+  "engines": {
+    "node": ">=6"
+  },
+  "repository": "vweevers/catering",
+  "bugs": "https://github.com/vweevers/catering/issues",
+  "homepage": "https://github.com/vweevers/catering"
+}
