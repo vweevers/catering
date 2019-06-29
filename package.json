@@ -12,8 +12,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "standard": "~12.0.1",
-    "tape": "~4.10.1"
+    "standard": "^12.0.1",
+    "tape": "^4.10.1"
   },
   "keywords": [
     "callback",
