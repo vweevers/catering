@@ -8,7 +8,7 @@
 [![Travis build status](https://img.shields.io/travis/vweevers/catering.svg?label=travis)](http://travis-ci.org/vweevers/catering)
 [![AppVeyor build status](https://img.shields.io/appveyor/ci/vweevers/catering.svg?label=appveyor)](https://ci.appveyor.com/project/vweevers/catering)
 [![Dependency status](https://img.shields.io/david/vweevers/catering.svg)](https://david-dm.org/vweevers/catering)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Greenkeeper badge](https://badges.greenkeeper.io/vweevers/catering.svg)](https://greenkeeper.io/)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Menu
 
