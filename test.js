@@ -26,7 +26,7 @@ const variants = [
 test('success with callback', function (t) {
   t.plan(variants.length * 2)
 
-  for (let variant of variants) {
+  for (const variant of variants) {
     variant(null, 'cake', (err, result) => {
       t.is(err, null)
       t.is(result, 'cake')
@@ -37,7 +37,7 @@ test('success with callback', function (t) {
 test('error with callback', function (t) {
   t.plan(variants.length)
 
-  for (let variant of variants) {
+  for (const variant of variants) {
     variant(new Error('mice'), null, (err) => {
       t.is(err.message, 'mice')
     })
@@ -47,7 +47,7 @@ test('error with callback', function (t) {
 test('success with promise', function (t) {
   t.plan(variants.length)
 
-  for (let variant of variants) {
+  for (const variant of variants) {
     variant(null, 'cake').then(result => {
       t.is(result, 'cake')
     })
@@ -57,7 +57,7 @@ test('success with promise', function (t) {
 test('error with promise', function (t) {
   t.plan(variants.length)
 
-  for (let variant of variants) {
+  for (const variant of variants) {
     variant(new Error('mice'), null).catch(err => {
       t.is(err.message, 'mice')
     })
