@@ -1,37 +1,11 @@
 'use strict'
 
-exports.array = function catering (callback) {
+exports.fromCallback = function (callback) {
   if (callback === undefined) {
     var promise = new Promise(function (resolve, reject) {
-      callback = function (err, value) {
+      callback = function (err, res) {
         if (err) reject(err)
-        else resolve(value)
-      }
-    })
-  }
-
-  return [callback, promise]
-}
-
-exports.object = function catering (callback) {
-  if (callback === undefined) {
-    var promise = new Promise(function (resolve, reject) {
-      callback = function (err, value) {
-        if (err) reject(err)
-        else resolve(value)
-      }
-    })
-  }
-
-  return { callback, promise }
-}
-
-exports.attach = function catering (callback) {
-  if (callback === undefined) {
-    const promise = new Promise(function (resolve, reject) {
-      callback = function (err, value) {
-        if (err) reject(err)
-        else resolve(value)
+        else resolve(res)
       }
     })
 
@@ -39,4 +13,12 @@ exports.attach = function catering (callback) {
   }
 
   return callback
+}
+
+exports.fromPromise = function (promise, callback) {
+  if (callback === undefined) return promise
+
+  promise
+    .then(function (res) { process.nextTick(callback, null, res) })
+    .catch(function (err) { process.nextTick(callback, err) })
 }

@@ -1,7 +1,7 @@
 # catering
 
 > **Cater to callback and promise crowds.**  
-> Internally use callbacks, because you an old-school chef.
+> Simple utility to allow your module to be consumed with a callback or promise.
 
 [![npm status](http://img.shields.io/npm/v/catering.svg)](https://www.npmjs.org/package/catering)
 [![node](https://img.shields.io/node/v/catering.svg)](https://www.npmjs.org/package/catering)
@@ -12,48 +12,36 @@
 
 ## Menu
 
-```js
-const catering = require('catering').array
-
-module.exports = function (maybeCallback) {
-  const [callback, promise] = catering(maybeCallback)
-  fs.readFile('example', callback)
-  return promise
-}
-```
+If your module internally uses callbacks:
 
 ```js
-const catering = require('catering').object
+const { fromCallback } = require('catering')
 
-module.exports = function (maybeCallback) {
-  const { callback, promise } = catering(maybeCallback)
-  fs.readFile('example', callback)
-  return promise
-}
-```
-
-```js
-const catering = require('catering').attach
-
-module.exports = function (maybeCallback) {
-  const callback = catering(maybeCallback)
-  fs.readFile('example', callback)
+module.exports = function (callback) {
+  callback = fromCallback(callback)
+  process.nextTick(callback, null, 'example')
   return callback.promise
 }
 ```
 
-## Consume
+If your module internally uses promises:
 
 ```js
-// Don't force promises on people.
-example((err, result) => ..)
+const { fromPromise } = require('catering')
 
-// Don't force callbacks on people.
-const result = await example()
-
-// Enjoy.
-example.then(result => ..)
+module.exports = function (callback) {
+  return fromPromise(Promise.resolve('example'), callback)
+}
 ```
+
+Either way your module can now be consumed in two ways:
+
+```js
+example((err, result) => {})
+const result = await example()
+```
+
+When converting from a promise to a callback, `fromPromise` calls the callback in a next tick to escape the promise chain and not let it steal your beautiful errors.
 
 ## Install
 

@@ -3,63 +3,96 @@
 const test = require('tape')
 const catering = require('.')
 
-const variants = [
-  function (error, result, maybeCallback) {
-    const [callback, promise] = catering.array(maybeCallback)
-    process.nextTick(callback, error, result)
-    return promise
-  },
+test('fromCallback to callback with success', function (t) {
+  t.plan(2)
 
-  function (error, result, maybeCallback) {
-    const { callback, promise } = catering.object(maybeCallback)
-    process.nextTick(callback, error, result)
-    return promise
-  },
+  const callback = catering.fromCallback(function (err, res) {
+    t.is(err, null)
+    t.is(res, 'cake')
+  })
 
-  function (error, result, maybeCallback) {
-    const callback = catering.attach(maybeCallback)
-    process.nextTick(callback, error, result)
-    return callback.promise
-  }
-]
-
-test('success with callback', function (t) {
-  t.plan(variants.length * 2)
-
-  for (const variant of variants) {
-    variant(null, 'cake', (err, result) => {
-      t.is(err, null)
-      t.is(result, 'cake')
-    })
-  }
+  process.nextTick(callback, null, 'cake')
 })
 
-test('error with callback', function (t) {
-  t.plan(variants.length)
+test('fromCallback to callback with error', function (t) {
+  t.plan(2)
 
-  for (const variant of variants) {
-    variant(new Error('mice'), null, (err) => {
-      t.is(err.message, 'mice')
-    })
-  }
+  const callback = catering.fromCallback(function (err, res) {
+    t.is(err.message, 'mice')
+    t.is(res, undefined)
+  })
+
+  process.nextTick(callback, new Error('mice'))
 })
 
-test('success with promise', function (t) {
-  t.plan(variants.length)
+test('fromCallback to promise with success', function (t) {
+  t.plan(1)
 
-  for (const variant of variants) {
-    variant(null, 'cake').then(result => {
-      t.is(result, 'cake')
-    })
-  }
+  const callback = catering.fromCallback()
+
+  callback.promise.then(function (res) {
+    t.is(res, 'cake')
+  })
+
+  process.nextTick(callback, null, 'cake')
 })
 
-test('error with promise', function (t) {
-  t.plan(variants.length)
+test('fromCallback to promise with error', function (t) {
+  t.plan(1)
 
-  for (const variant of variants) {
-    variant(new Error('mice'), null).catch(err => {
-      t.is(err.message, 'mice')
-    })
-  }
+  const callback = catering.fromCallback()
+
+  callback.promise.catch(function (err) {
+    t.is(err.message, 'mice')
+  })
+
+  process.nextTick(callback, new Error('mice'))
+})
+
+test('fromPromise to callback with success', function (t) {
+  t.plan(2)
+
+  const promise = Promise.resolve('cake')
+
+  catering.fromPromise(promise, function (err, res) {
+    t.is(err, null)
+    t.is(res, 'cake')
+  })
+})
+
+test('fromPromise to callback with error', function (t) {
+  t.plan(2)
+
+  const promise = Promise.reject(new Error('mice'))
+
+  catering.fromPromise(promise, function (err, res) {
+    t.is(err.message, 'mice')
+    t.is(res, undefined)
+  })
+})
+
+test('fromPromise to promise with success', function (t) {
+  t.plan(2)
+
+  const promise1 = Promise.resolve('cake')
+  const promise2 = catering.fromPromise(promise1)
+
+  t.ok(promise1 === promise2, 'returns input promise')
+
+  promise2.then(function (res) {
+    t.is(res, 'cake')
+  })
+})
+
+test('fromPromise to promise with error', function (t) {
+  t.plan(2)
+
+  const promise1 = Promise.reject(new Error('mice'))
+  const promise2 = catering.fromPromise(promise1)
+
+  t.ok(promise1 === promise2, 'returns input promise')
+
+  promise2.catch(function (err) {
+    t.is(err.message, 'mice')
+  })
 })

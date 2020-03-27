@@ -1,7 +1,7 @@
 {
   "name": "catering",
   "version": "1.0.0",
-  "description": "Cater to callback and promise crowds, internally use callbacks.",
+  "description": "Simple utility to allow your module to be consumed with a callback or promise",
   "license": "MIT",
   "author": "Vincent Weevers",
   "scripts": {
