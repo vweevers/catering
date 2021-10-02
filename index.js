@@ -1,5 +1,7 @@
 'use strict'
 
+var queueTick = require('queue-tick')
+
 exports.fromCallback = function (callback) {
   if (callback === undefined) {
     var promise = new Promise(function (resolve, reject) {
@@ -19,6 +21,6 @@ exports.fromPromise = function (promise, callback) {
   if (callback === undefined) return promise
 
   promise
-    .then(function (res) { process.nextTick(callback, null, res) })
-    .catch(function (err) { process.nextTick(callback, err) })
+    .then(function (res) { queueTick(() => callback(null, res)) })
+    .catch(function (err) { queueTick(() => callback(err)) })
 }

@@ -10,7 +10,9 @@
   "files": [
     "index.js"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "queue-tick": "^1.0.0"
+  },
   "devDependencies": {
     "standard": "^14.0.0",
     "tape": "^5.0.0"
