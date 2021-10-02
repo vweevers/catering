@@ -37,6 +37,19 @@ test('fromCallback to promise with success', function (t) {
   process.nextTick(callback, null, 'cake')
 })
 
+test('fromCallback to promise with success, using a symbol', function (t) {
+  t.plan(1)
+
+  const kPromise = Symbol('promise')
+  const callback = catering.fromCallback(undefined, kPromise)
+
+  callback[kPromise].then(function (res) {
+    t.is(res, 'cake')
+  })
+
+  process.nextTick(callback, null, 'cake')
+})
+
 test('fromCallback to promise with error', function (t) {
   t.plan(1)
 

@@ -2,7 +2,7 @@
 
 var queueTick = require('queue-tick')
 
-exports.fromCallback = function (callback) {
+exports.fromCallback = function (callback, symbol) {
   if (callback === undefined) {
     var promise = new Promise(function (resolve, reject) {
       callback = function (err, res) {
@@ -11,7 +11,7 @@ exports.fromCallback = function (callback) {
       }
     })
 
-    callback.promise = promise
+    callback[symbol !== undefined ? symbol : 'promise'] = promise
   }
 
   return callback

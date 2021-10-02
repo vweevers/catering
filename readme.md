@@ -1,13 +1,12 @@
 # catering
 
-> **Cater to callback and promise crowds.**  
-> Simple utility to allow your module to be consumed with a callback or promise.
+**Cater to callback and promise crowds.**  
+Simple utility to allow your module to be consumed with a callback or promise. For Node.js and browsers.
 
 [![npm status](http://img.shields.io/npm/v/catering.svg)](https://www.npmjs.org/package/catering)
 [![node](https://img.shields.io/node/v/catering.svg)](https://www.npmjs.org/package/catering)
 [![Travis build status](https://img.shields.io/travis/vweevers/catering.svg?label=travis)](http://travis-ci.org/vweevers/catering)
 [![AppVeyor build status](https://img.shields.io/appveyor/ci/vweevers/catering.svg?label=appveyor)](https://ci.appveyor.com/project/vweevers/catering)
-[![Dependency status](https://img.shields.io/david/vweevers/catering.svg)](https://david-dm.org/vweevers/catering)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Menu
@@ -16,11 +15,12 @@ If your module internally uses callbacks:
 
 ```js
 const { fromCallback } = require('catering')
+const kPromise = Symbol('promise')
 
 module.exports = function (callback) {
-  callback = fromCallback(callback)
-  process.nextTick(callback, null, 'example')
-  return callback.promise
+  callback = fromCallback(callback, kPromise)
+  queueMicrotask(() => callback(null, 'example'))
+  return callback[kPromise]
 }
 ```
 
