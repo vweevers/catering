@@ -28,7 +28,7 @@ test('fromCallback to callback with error', function (t) {
 test('fromCallback to promise with success', function (t) {
   t.plan(1)
 
-  const callback = catering.fromCallback()
+  const callback = catering.fromCallback(undefined)
 
   callback.promise.then(function (res) {
     t.is(res, 'cake')
@@ -53,7 +53,7 @@ test('fromCallback to promise with success, using a symbol', function (t) {
 test('fromCallback to promise with error', function (t) {
   t.plan(1)
 
-  const callback = catering.fromCallback()
+  const callback = catering.fromCallback(undefined)
 
   callback.promise.catch(function (err) {
     t.is(err.message, 'mice')
@@ -88,7 +88,7 @@ test('fromPromise to promise with success', function (t) {
   t.plan(2)
 
   const promise1 = Promise.resolve('cake')
-  const promise2 = catering.fromPromise(promise1)
+  const promise2 = catering.fromPromise(promise1, undefined)
 
   t.ok(promise1 === promise2, 'returns input promise')
 
@@ -101,7 +101,7 @@ test('fromPromise to promise with error', function (t) {
   t.plan(2)
 
   const promise1 = Promise.reject(new Error('mice'))
-  const promise2 = catering.fromPromise(promise1)
+  const promise2 = catering.fromPromise(promise1, undefined)
 
   t.ok(promise1 === promise2, 'returns input promise')
 

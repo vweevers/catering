@@ -7,8 +7,10 @@
   "scripts": {
     "test": "standard && node test.js"
   },
+  "types": "index.d.ts",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "dependencies": {
     "queue-tick": "^1.0.0"
