@@ -109,3 +109,13 @@ test('fromPromise to promise with error', function (t) {
     t.is(err.message, 'mice')
   })
 })
+
+test('fromCallback rejects callback if not a function', function (t) {
+  t.plan(1)
+
+  try {
+    catering.fromCallback(null)
+  } catch (err) {
+    t.is(err.message, 'Callback must be a function')
+  }
+})

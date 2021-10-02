@@ -12,6 +12,8 @@ exports.fromCallback = function (callback, symbol) {
     })
 
     callback[symbol !== undefined ? symbol : 'promise'] = promise
+  } else if (typeof callback !== 'function') {
+    throw new TypeError('Callback must be a function')
   }
 
   return callback
