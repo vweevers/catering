@@ -5,7 +5,8 @@
   "license": "MIT",
   "author": "Vincent Weevers",
   "scripts": {
-    "test": "standard && node test.js"
+    "test": "standard && node test.js",
+    "test:browser": "browserify test.js | tape-run"
   },
   "types": "index.d.ts",
   "files": [
@@ -16,8 +17,10 @@
     "queue-tick": "^1.0.0"
   },
   "devDependencies": {
+    "browserify": "17.0.0",
     "standard": "^14.0.0",
-    "tape": "^5.0.0"
+    "tape": "^5.0.0",
+    "tape-run": "9.0.0"
   },
   "keywords": [
     "callback",
