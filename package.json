@@ -13,9 +13,6 @@
     "index.js",
     "index.d.ts"
   ],
-  "dependencies": {
-    "queue-tick": "^1.0.0"
-  },
   "devDependencies": {
     "browserify": "17.0.0",
     "standard": "^14.0.0",
