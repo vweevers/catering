@@ -11,10 +11,12 @@
   "types": "index.d.ts",
   "files": [
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "next-tick.js",
+    "next-tick-browser.js"
   ],
-  "dependencies": {
-    "queue-tick": "^1.0.0"
+  "browser": {
+    "./next-tick.js": "./next-tick-browser.js"
   },
   "devDependencies": {
     "airtap": "^4.0.4",
