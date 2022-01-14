@@ -21,8 +21,8 @@
   "devDependencies": {
     "airtap": "^4.0.4",
     "airtap-playwright": "^1.0.1",
-    "standard": "^14.0.0",
-    "tape": "^5.0.0"
+    "standard": "^16.0.4",
+    "tape": "^5.4.0"
   },
   "keywords": [
     "callback",
