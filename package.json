@@ -1,6 +1,6 @@
 {
   "name": "catering",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple utility to allow your module to be consumed with a callback or promise",
   "license": "MIT",
   "author": "Vincent Weevers",
