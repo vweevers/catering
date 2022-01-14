@@ -5,7 +5,8 @@
   "license": "MIT",
   "author": "Vincent Weevers",
   "scripts": {
-    "test": "standard && node test.js"
+    "test": "standard && node test.js",
+    "test-browsers-local": "airtap test.js"
   },
   "types": "index.d.ts",
   "files": [
@@ -16,6 +17,8 @@
     "queue-tick": "^1.0.0"
   },
   "devDependencies": {
+    "airtap": "^4.0.4",
+    "airtap-playwright": "^1.0.1",
     "standard": "^14.0.0",
     "tape": "^5.0.0"
   },
