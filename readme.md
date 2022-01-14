@@ -3,11 +3,10 @@
 **Cater to callback and promise crowds.**  
 Simple utility to allow your module to be consumed with a callback or promise. For Node.js and browsers.
 
-[![npm status](http://img.shields.io/npm/v/catering.svg)](https://www.npmjs.org/package/catering)
-[![node](https://img.shields.io/node/v/catering.svg)](https://www.npmjs.org/package/catering)
-[![Travis build status](https://img.shields.io/travis/vweevers/catering.svg?label=travis)](http://travis-ci.org/vweevers/catering)
-[![AppVeyor build status](https://img.shields.io/appveyor/ci/vweevers/catering.svg?label=appveyor)](https://ci.appveyor.com/project/vweevers/catering)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![npm status](https://img.shields.io/npm/v/catering.svg)](https://www.npmjs.com/package/catering)
+[![Node version](https://img.shields.io/node/v/catering.svg)](https://www.npmjs.com/package/catering)
+[![Test](https://img.shields.io/github/workflow/status/vweevers/catering/Test?label=test)](https://github.com/vweevers/catering/actions/workflows/test.yml)
+[![Standard](https://img.shields.io/badge/standard-informational?logo=javascript&logoColor=fff)](https://standardjs.com)
 
 ## Menu
 
